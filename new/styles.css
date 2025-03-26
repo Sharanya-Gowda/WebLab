@@ -1,0 +1,197 @@
+/* Reset and Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    padding: 30px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header Section */
+header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-left: 80px; /* Add padding to ensure text doesn't collide with the logo */
+}
+
+.logoimg {
+    width: 100px;  /* Set the width of the logo */
+    height: 100px; /* Make it a square */
+    border-radius: 1%; /* Make the logo round */
+    position: absolute;
+    left: 20px; /* Align the logo to the left side */
+    top: 50%;
+    transform: translateY(-50%); /* Vertically center the logo */
+    transition: transform 0.3s ease;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-left: 80px; /* Add left margin to space out the header text from the logo */
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #34495e;
+    margin-top: 10px;
+    margin-left: 80px; /* Ensure text aligns well with the header */
+}
+
+/* Portfolio Container */
+.portfolio-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* Left Column: Experience & Education */
+.left-column {
+    width: 45%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for the left column */
+.left-column:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #2980b9;
+    border-bottom: 2px solid #2980b9;
+    padding-bottom: 8px;
+}
+
+h3 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-top: 20px;
+}
+
+ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.experience-item {
+    margin-bottom: 20px;
+}
+
+/* Right Column: Projects, Skills, Hobbies */
+.right-column {
+    width: 45%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for the right column */
+.right-column:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Projects Section */
+.project-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.project-item:hover {
+    background-color: #3498db;
+    color: #fff;
+    transform: translateY(-5px);
+}
+
+.project-item h3 {
+    font-size: 1.2rem;
+    color: #2980b9;
+}
+
+.project-item p {
+    font-size: 1rem;
+    color: #34495e;
+}
+
+/* Skills and Hobbies List */
+ul {
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    padding: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+ul li:hover {
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logoimg {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 20px;
+    }
+
+    header h1, header p {
+        margin-left: 0; /* Remove left margin for smaller screens */
+    }
+}
+
+.portfolio-container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.left-column, .right-column {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+/* General Styling for Links (Optional) */
+a {
+    text-decoration: none;
+    color: inherit;
+}
