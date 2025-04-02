@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Functions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            margin: 5px;
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Calculator Functions</h1>
+
+    <h2>Square a Number</h2>
+    <input type="number" id="squareInput" placeholder="Enter a number">
+    <button onclick="squareNumber()">Square</button>
+    <div class="output" id="squareResult"></div>
+
+    <h2>Half a Number</h2>
+    <input type="number" id="halfInput" placeholder="Enter a number">
+    <button onclick="halfNumber()">Half</button>
+    <div class="output" id="halfResult"></div>
+
+    <h2>Percentage Calculator</h2>
+    <input type="number" id="percentPart" placeholder="Enter the part">
+    <input type="number" id="percentWhole" placeholder="Enter the whole">
+    <button onclick="percentOf()">Calculate %</button>
+    <div class="output" id="percentResult"></div>
+
+    <h2>Area of a Circle</h2>
+    <input type="number" id="radiusInput" placeholder="Enter radius">
+    <button onclick="areaOfCircle()">Calculate Area</button>
+    <div class="output" id="areaResult"></div>
+
+    <h2>Full Calculation Sequence</h2>
+    <input type="number" id="sequenceInput" placeholder="Enter a number">
+    <button onclick="calculatorOperations()">Run Sequence</button>
+    <div class="output" id="sequenceResult"></div>
+
+    <script>
+        function squareNumber() {
+            let num = parseFloat(document.getElementById("squareInput").value);
+            if (!isNaN(num)) {
+                let result = num * num;
+                document.getElementById("squareResult").innerText = `The result of squaring the number ${num} is ${result}.`;
+            } else {
+                alert("Please enter a valid number.");
+            }
+        }
+
+        function halfNumber() {
+            let num = parseFloat(document.getElementById("halfInput").value);
+            if (!isNaN(num)) {
+                let result = num / 2;
+                document.getElementById("halfResult").innerText = `Half of ${num} is ${result}.`;
+            } else {
+                alert("Please enter a valid number.");
+            }
+        }
+
+        function percentOf() {
+            let part = parseFloat(document.getElementById("percentPart").value);
+            let whole = parseFloat(document.getElementById("percentWhole").value);
+            if (!isNaN(part) && !isNaN(whole) && whole !== 0) {
+                let result = (part / whole) * 100;
+                document.getElementById("percentResult").innerText = `${part} is ${result.toFixed(2)}% of ${whole}.`;
+            } else {
+                alert("Please enter valid numbers.");
+            }
+        }
+
+        function areaOfCircle() {
+            let radius = parseFloat(document.getElementById("radiusInput").value);
+            if (!isNaN(radius)) {
+                let area = Math.PI * radius * radius;
+                document.getElementById("areaResult").innerText = `The area for a circle with radius ${radius} is ${area.toFixed(2)}.`;
+            } else {
+                alert("Please enter a valid radius.");
+            }
+        }
+
+        function calculatorOperations() {
+            let num = parseFloat(document.getElementById("sequenceInput").value);
+            if (!isNaN(num)) {
+                let half = num / 2;
+                let squared = half * half;
+                let area = Math.PI * squared * squared;
+                let percentage = (area / squared) * 100;
+
+                document.getElementById("sequenceResult").innerText = 
+                    `Half of ${num} is ${half}.
+                    Squaring it gives ${squared}.
+                    The area of a circle with that radius is ${area.toFixed(2)}.
+                    The area ${area.toFixed(2)} is ${percentage.toFixed(2)}% of the squared result ${squared}.`;
+            } else {
+                alert("Please enter a valid number.");
+            }
+        }
+    </script>
+
+</body>
+</html>

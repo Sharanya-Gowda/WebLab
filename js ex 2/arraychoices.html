@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Choices Ranking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: left;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Top Choices Ranking</h1>
+
+    <label for="numChoices">How many top choices do you want to enter?</label>
+    <input type="number" id="numChoices" min="1">
+    <button onclick="generateInputs()">Submit</button>
+
+    <div id="choicesContainer"></div>
+    <button id="rankChoicesBtn" onclick="rankChoices()" style="display:none;">Rank My Choices</button>
+
+    <div class="output" id="result"></div>
+
+    <script>
+        function getOrdinalSuffix(num) {
+            if (num % 100 >= 11 && num % 100 <= 13) {
+                return num + "th";
+            }
+            switch (num % 10) {
+                case 1: return num + "st";
+                case 2: return num + "nd";
+                case 3: return num + "rd";
+                default: return num + "th";
+            }
+        }
+
+        function generateInputs() {
+            let numChoices = parseInt(document.getElementById("numChoices").value);
+            let container = document.getElementById("choicesContainer");
+            container.innerHTML = "";
+
+            if (isNaN(numChoices) || numChoices <= 0) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            for (let i = 0; i < numChoices; i++) {
+                let input = document.createElement("input");
+                input.type = "text";
+                input.placeholder = `Enter your ${getOrdinalSuffix(i + 1)} choice`;
+                input.className = "choiceInput";
+                container.appendChild(input);
+                container.appendChild(document.createElement("br"));
+            }
+
+            document.getElementById("rankChoicesBtn").style.display = "block";
+        }
+
+        function rankChoices() {
+            let inputs = document.getElementsByClassName("choiceInput");
+            let resultContainer = document.getElementById("result");
+            resultContainer.innerHTML = "<h2>Your Top Choices:</h2>";
+
+            let choices = [];
+            for (let i = 0; i < inputs.length; i++) {
+                let choice = inputs[i].value.trim();
+                if (choice !== "") {
+                    choices.push(choice);
+                }
+            }
+
+            if (choices.length === 0) {
+                resultContainer.innerHTML = "Please enter at least one choice.";
+                return;
+            }
+
+            choices.forEach((choice, index) => {
+                let rank = getOrdinalSuffix(index + 1);
+                resultContainer.innerHTML += `<p>My ${rank} choice is ${choice}.</p>`;
+            });
+        }
+    </script>
+
+</body>
+</html>

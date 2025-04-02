@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Tracker</title>
+</head>
+<body>
+
+
+    <h2>📚 Book Tracker</h2>
+
+
+    <label for="title">Book Title:</label>
+    <input type="text" id="title" placeholder="Enter book title">
+
+
+    <label for="author">Author:</label>
+    <input type="text" id="author" placeholder="Enter author name">
+
+
+    <label for="alreadyRead">Already Read?</label>
+    <input type="checkbox" id="alreadyRead">
+
+
+    <button onclick="addBook()">Add Book</button>
+
+
+    <h3>Your Book List:</h3>
+    <ul id="bookList"></ul>
+
+
+    <script>
+        // Array to store books
+        let books = [];
+
+
+        function addBook() {
+            let title = document.getElementById("title").value.trim();
+            let author = document.getElementById("author").value.trim();
+            let alreadyRead = document.getElementById("alreadyRead").checked;
+
+
+            if (title === "" || author === "") {
+                alert("Please enter both title and author.");
+                return;
+            }
+
+
+            // Create book object
+            let book = { title, author, alreadyRead };
+
+
+            // Add to book list
+            books.push(book);
+
+
+            // Clear inputs
+            document.getElementById("title").value = "";
+            document.getElementById("author").value = "";
+            document.getElementById("alreadyRead").checked = false;
+
+
+            // Update book display
+            displayBooks();
+        }
+
+
+        function displayBooks() {
+            let bookList = document.getElementById("bookList");
+            bookList.innerHTML = ""; // Clear previous list
+
+
+            books.forEach((book, index) => {
+                let listItem = document.createElement("li");
+                let bookInfo = `"${book.title}" by ${book.author}`;
+
+
+                if (book.alreadyRead) {
+                    listItem.textContent = `✅ You already read ${bookInfo}.`;
+                } else {
+                    listItem.textContent = `📖 You still need to read ${bookInfo}.`;
+                }
+
+
+                // Add delete button
+                let deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "❌ Remove";
+                deleteBtn.style.marginLeft = "10px";
+                deleteBtn.onclick = () => removeBook(index);
+
+
+                listItem.appendChild(deleteBtn);
+                bookList.appendChild(listItem);
+            });
+        }
+
+
+        function removeBook(index) {
+            books.splice(index, 1); // Remove book from array
+            displayBooks(); // Refresh book list
+        }
+    </script>
+
+
+</body>
+</html>

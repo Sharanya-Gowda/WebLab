@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Database</title>
+</head>
+<body>
+    <h2>Movie Database</h2>
+    
+    <label for="movieTitle">Movie Title:</label>
+    <input type="text" id="movieTitle"><br><br>
+
+    <label for="duration">Duration (minutes):</label>
+    <input type="number" id="duration"><br><br>
+
+    <label for="stars">Stars (comma separated):</label>
+    <input type="text" id="stars"><br><br>
+
+    <button onclick="displayMovie()">Show Movie</button>
+    
+    <pre id="movieOutput"></pre>
+
+    <script>
+        function displayMovie() {
+            let title = document.getElementById("movieTitle").value;
+            let duration = document.getElementById("duration").value;
+            let stars = document.getElementById("stars").value.split(",");
+
+            let movie = {
+                title: title,
+                duration: parseInt(duration),
+                stars: stars.map(star => star.trim())
+            };
+
+            let output = `${movie.title} lasts for ${movie.duration} minutes.\nStars: ${movie.stars.join(", ")}`;
+            document.getElementById("movieOutput").textContent = output;
+        }
+    </script>
+</body>
+</html>
+
+

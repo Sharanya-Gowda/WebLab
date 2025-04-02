@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MixUp Strings</title>
+</head>
+<body>
+    <h1>MixUp Strings</h1>
+    <label for="string1">Enter first string:</label>
+    <input type="text" id="string1" required>
+    <br>
+    <label for="string2">Enter second string:</label>
+    <input type="text" id="string2" required>
+    <br>
+    <button onclick="showResult()">Mix Up</button>
+    <p id="result"></p>
+
+    <script>
+        function mixUp(a, b) {
+            // Ensure the strings are at least 2 characters long
+            if (a.length < 2 || b.length < 2) {
+                return "Both strings must be at least 2 characters long.";
+            }
+            
+            // Swap the first two characters of each string
+            let newA = b.slice(0, 2) + a.slice(2);
+            let newB = a.slice(0, 2) + b.slice(2);
+            
+            // Return the concatenation with a space in between
+            return newA + " " + newB;
+        }
+
+        function showResult() {
+            let str1 = document.getElementById("string1").value;
+            let str2 = document.getElementById("string2").value;
+            let result = mixUp(str1, str2);
+            document.getElementById("result").innerText = "Result: " + result;
+        }
+    </script>
+</body>
+</html>
+

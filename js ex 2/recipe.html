@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Card</title>
+</head>
+<body>
+    <h2>Recipe Card</h2>
+    <label for="title">Recipe Title:</label>
+    <input type="text" id="title"><br><br>
+
+    <label for="servings">Servings:</label>
+    <input type="number" id="servings"><br><br>
+
+    <label for="ingredients">Ingredients (comma separated):</label>
+    <input type="text" id="ingredients"><br><br>
+
+    <button onclick="displayRecipe()">Show Recipe</button>
+    
+    <pre id="output"></pre>
+
+    <script>
+        function displayRecipe() {
+            let title = document.getElementById("title").value;
+            let servings = document.getElementById("servings").value;
+            let ingredients = document.getElementById("ingredients").value.split(",");
+
+            let recipe = {
+                title: title,
+                servings: parseInt(servings),
+                ingredients: ingredients.map(ing => ing.trim())
+            };
+
+            let output = `${recipe.title}\nServes: ${recipe.servings}\nIngredients:\n` + recipe.ingredients.join("\n");
+            document.getElementById("output").textContent = output;
+        }
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Register</title>
+</head>
+<body>
+    <h2>Cash Register</h2>
+    
+    <label for="cartItems">Enter items with prices (comma separated, e.g., apple:1.25, banana:0.99):</label>
+    <input type="text" id="cartItems"><br><br>
+
+    <button onclick="calculateTotal()">Calculate Total</button>
+    
+    <h3>Total Price: $<span id="totalPrice">0.00</span></h3>
+
+    <script>
+        function cashRegister(cart) {
+            let total = 0;
+            for (let item in cart) {
+                total += parseFloat(cart[item]);
+            }
+            return total.toFixed(2);
+        }
+
+        function calculateTotal() {
+            let input = document.getElementById("cartItems").value;
+            let itemsArray = input.split(",");
+            let cart = {};
+
+            itemsArray.forEach(item => {
+                let [name, price] = item.split(":");
+                if (name && price) {
+                    cart[name.trim()] = parseFloat(price.trim());
+                }
+            });
+
+            document.getElementById("totalPrice").textContent = cashRegister(cart);
+        }
+    </script>
+</body>
+</html>
+

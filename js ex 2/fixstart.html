@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fixStart Function</title>
+</head>
+<body>
+
+    <h2>fixStart Function (Case-Insensitive)</h2>
+    <label for="inputString">Enter a string:</label>
+    <input type="text" id="inputString">
+    <button onclick="processString()">Fix Start</button>
+    
+    <p>Result: <span id="result"></span></p>
+
+    <script>
+        function fixStart(str) {
+            if (str.length < 1) return str; // Ensure input is at least one character
+
+            let firstChar = str[0]; // First character
+            let firstCharLower = firstChar.toLowerCase(); // Lowercase version
+            let firstCharUpper = firstChar.toUpperCase(); // Uppercase version
+            
+            // Replace all occurrences of the first character (case-insensitive)
+            let restOfString = str.slice(1).replace(new RegExp(`[${firstCharLower}${firstCharUpper}]`, 'g'), '*');
+
+            return firstChar + restOfString;
+        }
+
+        function processString() {
+            let input = document.getElementById("inputString").value;
+            let output = fixStart(input);
+            document.getElementById("result").textContent = output;
+        }
+    </script>
+
+</body>
+</html>

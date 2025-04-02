@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pluralizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            margin: 5px;
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Pluralizer</h1>
+
+    <input type="text" id="nounInput" placeholder="Enter a noun">
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button onclick="pluralizeWord()">Pluralize</button>
+
+    <div class="output" id="result"></div>
+
+    <script>
+        function pluralize(noun, number) {
+            const irregularNouns = {
+                sheep: "sheep",
+                goose: "geese",
+                person: "people",
+                child: "children",
+                tooth: "teeth",
+                foot: "feet",
+                mouse: "mice",
+                man: "men",
+                woman: "women"
+            };
+
+            let pluralNoun;
+
+            if (number === 1) {
+                pluralNoun = noun; // Singular form
+            } else if (irregularNouns[noun.toLowerCase()]) {
+                pluralNoun = irregularNouns[noun.toLowerCase()]; // Handle irregular nouns
+            } else if (noun.endsWith("y") && !["a", "e", "i", "o", "u"].includes(noun[noun.length - 2])) {
+                pluralNoun = noun.slice(0, -1) + "ies"; // Change "y" to "ies" (e.g., "baby" → "babies")
+            } else if (noun.endsWith("s") || noun.endsWith("sh") || noun.endsWith("ch") || noun.endsWith("x") || noun.endsWith("z")) {
+                pluralNoun = noun + "es"; // Add "es" for words ending in s, sh, ch, x, or z
+            } else {
+                pluralNoun = noun + "s"; // Default plural form
+            }
+
+            return `${number} ${pluralNoun}`;
+        }
+
+        function pluralizeWord() {
+            let noun = document.getElementById("nounInput").value.trim();
+            let number = parseInt(document.getElementById("numberInput").value);
+
+            if (noun === "" || isNaN(number)) {
+                document.getElementById("result").innerText = "Please enter a valid noun and number.";
+                return;
+            }
+
+            document.getElementById("result").innerText = pluralize(noun, number);
+        }
+    </script>
+
+</body>
+</html>

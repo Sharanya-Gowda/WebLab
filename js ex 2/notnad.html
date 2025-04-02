@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Bad Sentence Modifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            width: 300px;
+            padding: 10px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #output {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h2>Not Bad Sentence Modifier</h2>
+    <p>Enter a sentence and click the button to see the modified result.</p>
+
+    <input type="text" id="sentenceInput" placeholder="Enter a sentence...">
+    <button onclick="processSentence()">Modify Sentence</button>
+
+    <p id="output"></p>
+
+    <script>
+        function notBad(sentence) {
+            let notIndex = sentence.indexOf("not");
+            let badIndex = sentence.indexOf("bad");
+
+            if (notIndex !== -1 && badIndex !== -1 && badIndex > notIndex) {
+                return sentence.slice(0, notIndex) + "good" + sentence.slice(badIndex + 3);
+            }
+            return sentence;
+        }
+
+        function processSentence() {
+            let userSentence = document.getElementById("sentenceInput").value;
+
+            if (userSentence.trim() === "") {
+                alert("Please enter a valid sentence.");
+                return;
+            }
+
+            let modifiedSentence = notBad(userSentence);
+            document.getElementById("output").innerText = "Updated sentence: " + modifiedSentence;
+        }
+    </script>
+</body>
+</html>

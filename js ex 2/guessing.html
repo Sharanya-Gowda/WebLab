@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .output {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .hangman {
+            font-size: 24px;
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Word Guessing Game</h1>
+    <p>Guess the letters of the hidden word!</p>
+    
+    <input type="text" id="guessInput" maxlength="1" placeholder="Enter a letter">
+    <button onclick="guessLetter()">Guess</button>
+
+    <div class="output" id="wordDisplay"></div>
+    <div class="output">Guessed Letters: <span id="guessedLetters">None</span></div>
+    <div class="output">Reward: $<span id="reward">0</span></div>
+    <div class="hangman" id="hangmanState"></div>
+
+    <script>
+        const words = ["CODE", "JAVA", "PYTHON", "JAVASCRIPT", "HTML", "CSS"];
+        const word = words[Math.floor(Math.random() * words.length)].split("");
+        let guessedWord = Array(word.length).fill("_");
+        let guessedLetters = [];
+        let reward = 0;
+        let hangmanState = 0;
+
+        function updateDisplay() {
+            document.getElementById("wordDisplay").textContent = guessedWord.join(" ");
+            document.getElementById("guessedLetters").textContent = guessedLetters.length > 0 ? guessedLetters.join(", ") : "None";
+            document.getElementById("reward").textContent = reward;
+            document.getElementById("hangmanState").textContent = "Hangman Strikes: " + hangmanState + "/6";
+
+            if (hangmanState >= 6) {
+                alert("Game Over! You lost. The word was: " + word.join(""));
+                location.reload();
+            }
+
+            if (!guessedWord.includes("_")) {
+                alert("Congratulations! You guessed the word: " + word.join("") + "\nFinal Reward: $" + reward);
+                location.reload();
+            }
+        }
+
+        function guessLetter() {
+            let input = document.getElementById("guessInput").value.toUpperCase();
+            document.getElementById("guessInput").value = "";
+
+            if (!input.match(/[A-Z]/) || input.length !== 1) {
+                alert("Please enter a valid letter.");
+                return;
+            }
+
+            if (guessedLetters.includes(input)) {
+                alert("You already guessed that letter!");
+                return;
+            }
+
+            guessedLetters.push(input);
+            let found = false;
+            let roundReward = Math.floor(Math.random() * 100) + 10;
+
+            word.forEach((letter, index) => {
+                if (letter === input) {
+                    guessedWord[index] = input;
+                    found = true;
+                }
+            });
+
+            if (found) {
+                reward += roundReward;
+                alert(`Good job! You earned $${roundReward}.`);
+            } else {
+                reward -= roundReward / 2;
+                hangmanState++;
+                alert(`Wrong guess! You lost $${roundReward / 2}.`);
+            }
+
+            updateDisplay();
+        }
+
+        updateDisplay();
+    </script>
+
+</body>
+</html>

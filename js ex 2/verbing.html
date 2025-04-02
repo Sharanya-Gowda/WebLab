@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Verbing Function</title>
+</head>
+<body>
+   <h1>Verbing Function in Action</h1>
+   <label for="inputString">Enter a word: </label>
+   <input type="text" id="inputString">
+   <button onclick="verbing()">Submit</button>
+   <p id="result"></p>
+
+
+   <script>
+       function verbing() {
+           // Get the input string value
+           const input = document.getElementById("inputString").value;
+           let result = '';
+
+
+           // Check if length is at least 3
+           if (input.length >= 3) {
+               if (input.endsWith('ing')) {
+                   result = input + 'ly';
+               } else {
+                   result = input + 'ing';
+               }
+           } else {
+               result = input;
+           }
+
+
+           // Display the result
+           document.getElementById("result").innerText = "Result: " + result;
+       }
+   </script>
+</body>
+</html>
