@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Activity Rank Evaluator</title>
+</head>
+<body>
+  <h2>Check the console for output</h2>
+
+  <script>
+    // 1. Global Variables
+    var studentName = "Anika";
+    var activityScores = [10, 20, 15, 5];
+
+    // Hoisting Experiment
+    console.log("Category before declaration (hoisting):", category); // undefined due to hoisting
+    var category = "Unknown";
+
+    // 2. Function Declaration - Calculates total score
+    function calculateTotal(scores) {
+      var total = 0;
+      for (var i = 0; i < scores.length; i++) {
+        total += scores[i];
+      }
+      return total;
+    }
+
+    // 3. Function Expression - Evaluates rank
+    var evaluateRank = function(total) {
+      if (total > 40) return "Star Performer";
+      else if (total >= 30 && total <= 40) return "Active";
+      else return "Inactive";
+    };
+
+    // 4. Anonymous Function - Calculates average score
+    var calculateAverage = function(scores) {
+      return calculateTotal(scores) / scores.length;
+    };
+
+    // Calculations
+    var totalScore = calculateTotal(activityScores);
+    var averageScore = calculateAverage(activityScores);
+    var rank = evaluateRank(totalScore);
+
+    // Scope Isolation Test - var inside a block
+    if (true) {
+      var blockScopedVar = "I'm declared in a block using var!";
+    }
+    console.log("Block Scoped Var (accessible outside block):", blockScopedVar);
+
+    // 5. Lexical Scope - Nested function accessing outer function variables
+    function generateReport() {
+      var message = "Great job on co-curriculars!";
+
+      function showDetails() {
+        // Inner function accessing outer function vars (Lexical Scope)
+        console.log("Report:");
+        console.log("  Student:", studentName);
+        console.log("  Rank:", rank);
+        console.log("  Message:", message);
+      }
+
+      showDetails(); // Call nested function
+    }
+
+    // Final Console Output
+    console.log("Student:", studentName);
+    console.log("Activity Scores:", activityScores);
+    console.log("Total Score:", totalScore);
+    console.log("Average Score:", averageScore);
+    console.log("Rank:", rank);
+
+    generateReport(); // Generate detailed report
+  </script>
+</body>
+</html>

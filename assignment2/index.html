@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unique Quiz App</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            background-color: lightskyblue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Unique Quiz App</h1>
+    <button onclick="runQuiz()">Start Quiz</button>
+    <button onclick="reviewScore()">Review Score</button>
+
+    <script>
+
+        /*
+        What I Learned About Scope and Hoisting in JavaScript:
+
+        In JavaScript, scope defines where variables and functions can be accessed. 
+        Global variables are declared outside any function and can be used throughout the entire script, 
+        while local variables are declared inside a function and are accessible only within that function. 
+        This separation helps prevent unintended data modifications. I also learned about lexical scope, 
+        where functions execute in the context they were defined, not where they are called. 
+        This means inner functions remember variables from their outer scope, which is key for closures.
+
+        Additionally, I explored the concept of hoisting. JavaScript hoists declarations 
+        to the top of their scope during compilation. Function declarations are hoisted fully, 
+        so they can be called before they appear in code. Variables declared with `var` are hoisted 
+        but initialized with `undefined`, so accessing them early won’t throw an error, 
+        but may lead to bugs. However, variables declared with `let` and `const` are hoisted 
+        but not initialized — accessing them before declaration causes a ReferenceError due to the "Temporal Dead Zone". 
+        Understanding these concepts is essential for writing clean and predictable JavaScript code.
+        */
+
+
+        // Global score variable
+        let score = 0;
+
+        // Function Declaration - Unique Question 1
+        function questionOne() {
+            let answer = prompt("Q1: A man pushes his car to a hotel and tells the owner he’s bankrupt. Why?\n(a) He lost a bet\n(b) He’s playing Monopoly\n(c) The hotel is closed");
+
+            let isCorrect = (answer === 'b' || answer.includes("monopoly"));
+            if (isCorrect) {
+                alert("Correct!");
+                score++;
+            } else {
+                alert("Incorrect. The correct answer is: He’s playing Monopoly.");
+            }
+
+            // Local variable (for bonus scope test)
+            let localScore = 1;
+        }
+
+        // Function Expression - Unique Question 2
+        const questionTwo = function() {
+            let answer = prompt("Q2: Which company was originally called 'Backrub'?\n(a) Apple\n(b) Google\n(c) Amazon");
+
+            let isCorrect = (answer === 'b' || answer.includes("google"));
+            
+            if (isCorrect) {
+                alert("Correct!");
+                score++;
+            } else {
+                alert("Incorrect. The correct answer is: Google.");
+            }
+        };
+
+        // Hoisting Demonstration
+        function demonstrateHoisting() {
+            console.log("\n--- Hoisting Demo ---");
+            console.log("Value of hoistedVar before declaration:", hoistedVar); // undefined
+            var hoistedVar = "I'm hoisted!";
+            console.log("Value of hoistedVar after declaration:", hoistedVar);
+
+            hoistedFunc(); // Works due to function hoisting
+            function hoistedFunc() {
+                console.log("This function is hoisted!");
+            }
+
+            // Uncommenting the below would throw an error
+            // unhoistedFunc(); 
+            var unhoistedFunc = function() {
+                console.log("Function expression not hoisted!");
+            };
+        }
+
+        // Function Declaration - Unique Question 3
+        function questionThree() {
+            let answer = prompt("Q3: I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?\n(a) An echo\n(b) A whistle\n(c) A shadow");
+
+            let isCorrect = (answer === 'a' || answer.includes("echo"));
+            
+            if (isCorrect) {
+                alert("Correct!");
+                score++;
+            } else {
+                alert("Incorrect. The correct answer is: An echo.");
+            }
+        }
+
+        // Bonus: Tries to access localScore (will throw error)
+        function reviewScore() {
+            alert("Global Score: " + score);
+            try {
+                alert("Trying to access localScore from questionOne: " + localScore);
+            } catch (e) {
+                alert("Error: Cannot access localScore - it's scoped locally to questionOne.");
+            }
+        }
+
+        // Quiz Runner
+        function runQuiz() {
+            score = 0; // reset
+            questionOne();
+            questionTwo();
+            demonstrateHoisting();
+            questionThree();
+            alert("Quiz Complete! Your final score is: " + score + " out of 3.");
+        }
+    </script>
+
+</body>
+</html>
+
+
+
