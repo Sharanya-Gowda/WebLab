@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Internship Management</title>
+</head>
+<body>
+  <h2>Add Internship</h2>
+  <form action="/insert" method="get">
+    <input type="text" name="Sid" placeholder="Student ID" required><br>
+    <input type="text" name="name" placeholder="Name" required><br>
+    <input type="text" name="company" placeholder="Company" required><br>
+    <input type="text" name="duration" placeholder="Duration" required><br>
+    <button type="submit">Add Internship</button>
+  </form>
+
+  <h2>Update Internship Status</h2>
+  <form action="/update" method="post">
+    <input type="text" name="Sid" placeholder="Student ID" required><br>
+    <select name="status" required>
+      <option value="pending">Pending</option>
+      <option value="inprogress">In Progress</option>
+      <option value="completed">Completed</option>
+    </select><br>
+    <button type="submit">Update Status</button>
+  </form>
+
+  <h2>View Infosys Interns</h2>
+  <form action="/infosys" method="get">
+    <button type="submit">Show Infosys Interns</button>
+  </form>
+</body>
+</html>

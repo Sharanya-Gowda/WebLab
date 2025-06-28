@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Add Hospital</h2>
+  <form action="/add" method="post">
+    <input name="Hospital_ID" placeholder="Hospital ID" required><br>
+    <input name="Name" placeholder="Name" required><br>
+    <input name="Location" placeholder="Location" required><br>
+    <input name="Total_Beds" type="number" placeholder="Total Beds" required><br>
+    <input name="Occupied_Beds" type="number" placeholder="Occupied Beds" required><br>
+    <button type="submit">Add Hospital</button>
+  </form>
+
+  <h2>Admit Patient</h2>
+  <form action="/admit" method="post">
+    <input name="Hospital_ID" placeholder="Hospital ID" required><br>
+    <button type="submit">Admit Patient</button>
+  </form>
+
+  <h2>View Critical Hospitals</h2>
+  <form action="/critical" method="get">
+    <button type="submit">Show Critical</button>
+  </form>
+</body>
+</html>
