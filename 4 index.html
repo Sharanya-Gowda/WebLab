@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Info</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React and Babel -->
+  <script src="react.development.js"></script>
+  <script src="react-dom.development.js"></script>
+  <script src="babel.min.js"></script>
+
+  <script type="text/babel">
+    function EmployeeInfo() {
+      const [employee, setEmployee] = React.useState({
+        name: "Sharanya",
+        address: "Banglore",
+        company: "IBM"
+      });
+
+      const [toggle, setToggle] = React.useState(true);
+
+        const handleChange = () => {
+        if (toggle) {
+            setEmployee({
+            name: "Yash",
+            address: "Mumbai",
+            company: "Microsoft"
+            });
+        } else {
+            setEmployee({
+            name: "Sharanya",
+            address: "Banglore",
+            company: "IBM"
+            });
+        }
+        setToggle(!toggle);
+        };
+
+      return (
+        <div>
+          <h2>Employee Information</h2>
+          <p>Name: {employee.name}</p>
+          <p>Address:{employee.address}</p>
+          <p>Company: {employee.company}</p>
+          <button onClick={handleChange}>CHANGE</button>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<EmployeeInfo />, document.getElementById('root'));
+  </script>
+</body>
+</html>
