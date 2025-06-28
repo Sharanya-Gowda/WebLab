@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not a Bad sentence</title>
+</head>
+<body>
+    <h1>Enter a sentence</h1>
+    <form id="form">
+        <input id="sentence" type="text" name="sentence" placeholder="Enter sentence" required>
+        <button type="submit">Check</button>
+    </form>
+    <h2>Output</h2>
+    <p id="output"></p>
+    <script>    
+        document.getElementById('form').addEventListener("submit", function(e) {
+            e.preventDefault();
+            const sentence = document.getElementById('sentence').value.trim();
+            const output = document.getElementById('output');
+
+            function notbadsentence(sentence){
+                let notindex=sentence.indexOf("not");
+                let badindex=sentence.indexOf("bad");
+
+                if(notindex!==-1 && badindex!==-1 && badindex>notindex){
+                    return sentence.slice(0,notindex) +"good" + sentence.slice(badindex + 3);
+                }
+                return sentence
+            }
+
+            output.textContent = notbadsentence(sentence);
+        });
+    </script>
+    
+</body>
+</html>

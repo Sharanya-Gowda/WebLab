@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Translate Text</title>
+</head>
+<body>
+    <h2>Translate Text (Double Consonants with 'o')</h2>
+    <form id="translateForm">
+        <input type="text" id="inputText" placeholder="Enter text" required>
+        <button type="submit">Translate</button>
+    </form>
+    <h3>Translated Output:</h3>
+    <p id="output"></p>
+
+    <script>
+        function translate(text) {
+            return text.split('').map(char => {
+                if (/[bcdfghjklmnpqrstvwxyz]/i.test(char)) {
+                    return char + 'o' + char;
+                } else {
+                    return char;
+                }
+            }).join('');
+        }
+
+        document.getElementById("translateForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const input = document.getElementById("inputText").value;
+            const result = translate(input);
+            document.getElementById("output").innerText = result;
+        });
+    </script>
+</body>
+</html>

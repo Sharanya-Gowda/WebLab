@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Box Model Styling</title>
+  <style>
+    h1 {
+      border: 1px solid red;
+      background-color: #D18C1D;
+      padding: 10px;
+    }
+
+    li {
+      margin: 15px;
+      background-color: #C0A9DB;
+      padding: 5px;
+      list-style-type: square;
+    }
+
+    p {
+      width: 600px;
+      height: 400px;
+      border: 2px dotted black;
+      background-color: #D1D631;
+      padding: 10px;
+      box-sizing: border-box;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Student Portal</h1>
+
+  <ul>
+    <li>Attendance</li>
+    <li>Marks</li>
+    <li>Assignments</li>
+  </ul>
+
+  <p>
+    Welcome to the student portal. This paragraph is inside a box with dimensions 600x400 pixels,
+    styled with a 2px black dotted border and a background color of #D1D631. This demonstrates
+    proper usage of the box model in HTML and CSS, including padding, margin, border, and content.
+    You can resize or add more content to test scrolling and layout behavior.
+  </p>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stack and Queue - Interactive</title>
+</head>
+<body>
+  <h1>Stack and Queue Operations</h1>
+
+  <div class="container">
+    <h2>Stack</h2>
+    <input type="text" id="stackInput" placeholder="Enter stack element">
+    <button onclick="pushStack()">Push</button>
+    <button onclick="popStack()">Pop</button>
+    <div class="output" id="stackOutput"></div>
+  </div>
+
+  <div class="container">
+    <h2>Queue</h2>
+    <input type="text" id="queueInput" placeholder="Enter queue element">
+    <button onclick="enqueue()">Enqueue</button>
+    <button onclick="dequeue()">Dequeue</button>
+    <div class="output" id="queueOutput"></div>
+  </div>
+
+  <script>
+    // Stack implementation
+    class Stack {
+      constructor() {
+        this.items = [];
+      }
+
+      push(item) {
+        this.items.push(item);
+      }
+
+      pop() {
+        return this.items.pop();
+      }
+
+      print() {
+        return this.items.join(', ');
+      }
+    }
+
+    // Queue implementation
+    class Queue {
+      constructor() {
+        this.items = [];
+      }
+
+      enqueue(item) {
+        this.items.push(item);
+      }
+
+      dequeue() {
+        return this.items.shift();
+      }
+
+      print() {
+        return this.items.join(', ');
+      }
+    }
+
+    const stack = new Stack();
+    const queue = new Queue();
+
+    function pushStack() {
+      const input = document.getElementById('stackInput').value.trim();
+      if (input) {
+        stack.push(input);
+        document.getElementById('stackInput').value = '';
+        updateStackOutput();
+      }
+    }
+
+    function popStack() {
+      stack.pop();
+      updateStackOutput();
+    }
+
+    function updateStackOutput() {
+      document.getElementById('stackOutput').innerText = `Stack: [ ${stack.print()} ]`;
+    }
+
+    function enqueue() {
+      const input = document.getElementById('queueInput').value.trim();
+      if (input) {
+        queue.enqueue(input);
+        document.getElementById('queueInput').value = '';
+        updateQueueOutput();
+      }
+    }
+
+    function dequeue() {
+      queue.dequeue();
+      updateQueueOutput();
+    }
+
+    function updateQueueOutput() {
+      document.getElementById('queueOutput').innerText = `Queue: [ ${queue.print()} ]`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pluralizer</title>
+</head>
+<body>
+  <h1>Pluralizer</h1>
+
+  <form id="form">
+    <input id="noun" placeholder="Noun" required>
+    <input id="number" type="number" placeholder="Number" required>
+    <button type="submit">Pluralize</button>
+  </form>
+
+  <h2 id="output"></h2>
+
+  <script>
+    document.getElementById("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const noun = document.getElementById("noun").value.trim();
+      const number = parseInt(document.getElementById("number").value);
+      const output = document.getElementById("output");
+
+      const irregular = {
+        person: "people", child: "children", goose: "geese", foot: "feet",
+        tooth: "teeth", mouse: "mice", man: "men", woman: "women", sheep: "sheep",thief:"thieves",calf:"calves",leaf:"leaves",loaf:"loaves",knife:"knives",wife:"wives",cactus:"cacti",fungus:"fungi",
+        cactus: "cacti", focus: "foci", nucleus: "nuclei", syllabus: "syllabi",
+        radius: "radii", stimulus: "stimuli", analysis: "analyses",
+      };
+
+      let plural;
+      if (number === 1) {
+        plural = noun;
+      } else if (irregular[noun.toLowerCase()]) {
+        plural = irregular[noun.toLowerCase()];}
+        
+        else if (noun.endsWith("y") && !"aeiou".includes(noun.at(-2))) {
+        plural = noun.slice(0, -1) + "ies";
+      } 
+      
+        else if (/s$|sh$|ch$|x$|z$/.test(noun)) {
+        plural = noun + "es";
+      } else {
+        plural = noun + "s";
+      }
+
+      output.textContent = `${number} ${plural}`;
+    });
+  </script>
+</body>
+</html>

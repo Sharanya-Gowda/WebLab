@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Academic Data</title>
+</head>
+<body>
+    <h2>Enter Student Academic Data</h2>
+    <form id="studentForm">
+        <input type="text" id="usn" placeholder="Enter USN" required>
+        <input type="text" id="subjectCode" placeholder="Enter Subject Code" required>
+        <input type="text" id="subjectName" placeholder="Enter Subject Name" required>
+        <input type="number" id="cieMarks" placeholder="Enter CIE Marks" required>
+        <input type="number" id="seeMarks" placeholder="Enter SEE Marks" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="output"></p>
+
+    <script>
+        // Closure to encapsulate CIE and SEE marks
+        function createStudent(usn, subjectCode, subjectName, cieMarks, seeMarks) {
+            let cie = cieMarks;
+            let see = seeMarks;
+
+            return {
+                getDetails: function () {
+                    return {
+                        usn: usn,
+                        subjectCode: subjectCode,
+                        subjectName: subjectName,
+                        totalMarks: cie + see
+                    };
+                }
+            };
+        }
+
+        // Form handler
+        document.getElementById("studentForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const usn = document.getElementById("usn").value;
+            const subjectCode = document.getElementById("subjectCode").value;
+            const subjectName = document.getElementById("subjectName").value;
+            const cieMarks = parseInt(document.getElementById("cieMarks").value);
+            const seeMarks = parseInt(document.getElementById("seeMarks").value);
+
+            const student = createStudent(usn, subjectCode, subjectName, cieMarks, seeMarks);
+            const res = student.getDetails();
+
+            document.getElementById("output").innerHTML = `
+                USN: ${res.usn}<br>
+                Subject Code: ${res.subjectCode}<br>
+                Subject Name: ${res.subjectName}<br>
+                Total Marks: ${res.totalMarks}
+            `;
+        });
+    </script>
+</body>
+</html>
